@@ -362,6 +362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridSize: 10
   buildingSpace: 2
+  roadWidth: 1
+  roadAmount: 5
 --- !u!4 &804482000
 Transform:
   m_ObjectHideFlags: 0

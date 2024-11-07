@@ -6,6 +6,8 @@ public class CityGenerator : MonoBehaviour
 {
 	public int gridSize = 10;
 	public float buildingSpace = 2f;
+	public int roadWidth = 1;
+	public int roadAmount = 5;
 
 	void Start()
 	{
@@ -30,6 +32,12 @@ public class CityGenerator : MonoBehaviour
 		{
 			for (int z = 0; z < gridSize; z++)
 			{
+				// Check if current pos is road
+				if (IsRoad(x, z))
+				{
+					continue;
+				}
+
 				Vector3 position = new Vector3(x * buildingSpace, 0, z * buildingSpace);
 				GameObject building = GameObject.CreatePrimitive(PrimitiveType.Cube);
 
@@ -47,5 +55,21 @@ public class CityGenerator : MonoBehaviour
 				building.transform.parent = this.transform;
 			}
 		}
+	}
+
+	// Road checker
+	bool IsRoad(int x, int z)
+	{
+		if (x % (roadAmount + roadWidth) < roadWidth)
+		{
+			return true;
+		}
+
+		if (z % (roadAmount + roadWidth) < roadWidth)
+		{
+			return true;
+		}
+
+		return false;
 	}
 }
