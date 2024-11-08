@@ -2,8 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+// Generates a city
 public class CityGenerator : MonoBehaviour
 {
+	// Grid settings
 	public int gridSize = 20;
 	public float buildingSpacing = 4f;
 	public int roadWidth = 1;
@@ -11,12 +13,13 @@ public class CityGenerator : MonoBehaviour
 	public List<GameObject> buildingPrefabs;
 	public GameObject roadPrefab;
 
+	// Generation settings
 	public float generationTime = 0.01f;
-
 	public float waveSpeed = 5f;
 	public float waveHeight = 5f;
 	public float waveDuration = 0.5f;
 
+	// Road settings
 	private HashSet<int> roadXPositions;
 	private HashSet<int> roadZPositions;
 	public int minRoads = 2;
@@ -29,6 +32,7 @@ public class CityGenerator : MonoBehaviour
 		GenerateCity();
 	}
 
+	// Clear old gen and generate a new one
 	public void GenerateCity()
 	{
 		if (isGenerating)
@@ -46,6 +50,7 @@ public class CityGenerator : MonoBehaviour
 		StartCoroutine(GenerateOverTime());
 	}
 
+	// Generate random road pos
 	void GenerateRoads()
 	{
 		roadXPositions = new HashSet<int>();
@@ -67,6 +72,7 @@ public class CityGenerator : MonoBehaviour
 		}
 	}
 
+	// Generate city grid with buildings and roads over time
 	IEnumerator GenerateOverTime()
 	{
 		isGenerating = true;
@@ -94,6 +100,7 @@ public class CityGenerator : MonoBehaviour
 					GameObject buildingPrefab = buildingPrefabs[Random.Range(0, buildingPrefabs.Count)];
 					GameObject building = Instantiate(buildingPrefab, position, Quaternion.identity, this.transform);
 
+					// Random building height
 					float randomHeight = Random.Range(1f, 3f);
 					building.transform.localScale = new Vector3(
 						building.transform.localScale.x,
@@ -108,6 +115,7 @@ public class CityGenerator : MonoBehaviour
 
 					StartCoroutine(Wave(building, position, distanceFromCenter));
 
+					// Random building rotation
 					float yRotation = Random.Range(0, 4) * 90f;
 					building.transform.Rotate(0, yRotation, 0);
 				}
@@ -123,6 +131,7 @@ public class CityGenerator : MonoBehaviour
 		isGenerating = false;
 	}
 
+	// Makes building's rise with a wave effect because it's cool
 	IEnumerator Wave(GameObject building, Vector3 finalPosition, float distanceFromCenter)
 	{
 		Renderer renderer = building.GetComponentInChildren<Renderer>();
@@ -160,6 +169,7 @@ public class CityGenerator : MonoBehaviour
 		building.transform.position = endPos;
 	}
 
+	// Checks if a grid pos should be a road
 	bool IsRoad(int x, int z)
 	{
 		for (int i = 0; i < roadWidth; i++)
