@@ -360,10 +360,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eca9e30b6bcb6a4294b14de66b6b5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: 10
-  buildingSpace: 2
+  gridSize: 20
+  blockSpacing: 4
   roadWidth: 1
-  roadAmount: 5
+  roadHeight: 0.05
+  buildingPrefabs:
+  - {fileID: 3023452018482023503, guid: b3d095da3c05ff145b2d086becc0e1b9, type: 3}
+  roadPrefab: {fileID: 4918536074560525920, guid: 48b961b225314be459668fba9393704d, type: 3}
+  generationTime: 0.01
+  waveSpeed: 5
+  waveHeight: 5
+  waveDuration: 0.5
+  minRoads: 2
+  maxRoads: 4
 --- !u!4 &804482000
 Transform:
   m_ObjectHideFlags: 0
@@ -438,7 +447,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -464,8 +473,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19697067, y: 0.46803552, z: -0.107860655, w: 0.8546996}
-  m_LocalPosition: {x: -23.552086, y: 17.101154, z: -12.054184}
+  m_LocalRotation: {x: 0.45783663, y: -0.13352367, z: 0.06967163, w: 0.8761866}
+  m_LocalPosition: {x: 56.1337, y: 58.148273, z: -9.926768}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -729,7 +738,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 'Generate
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -762,7 +773,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 0
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -905,8 +916,8 @@ Transform:
   m_GameObject: {fileID: 2044226213}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1000, y: 1, z: 1000}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
